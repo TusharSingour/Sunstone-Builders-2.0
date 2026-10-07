@@ -36,13 +36,16 @@ function closeMobileNav(){
   $('#sidebar')?.classList.remove('mobile-open');
   $('#sidebarBackdrop')?.classList.remove('show');
   $('#mobileMenu')?.setAttribute('aria-expanded','false');
+  document.body.classList.remove('menu-open');
 }
 function toggleMobileNav(){
-  const sidebar=$('.sidebar'),backdrop=$('#sidebarBackdrop'),button=$('#mobileMenu');
+  const sidebar=$('#mainSidebar')||$('.sidebar'),backdrop=$('#sidebarBackdrop'),button=$('#mobileMenu');
+  if(!sidebar||!backdrop)return;
   const open=!sidebar.classList.contains('mobile-open');
   sidebar.classList.toggle('mobile-open',open);
   backdrop.classList.toggle('show',open);
   button?.setAttribute('aria-expanded',String(open));
+  document.body.classList.toggle('menu-open',open);
 }
 function openPage(id){
   $$('.page').forEach(p=>p.classList.toggle('active',p.id===id));
@@ -190,7 +193,8 @@ $('#completeToday').addEventListener('click',()=>{
 });
 $('#openWorkspace').addEventListener('click',openWorkspace);$('#modalClose').addEventListener('click',closeModal);$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});$('#notifications').addEventListener('click',notify);$('#globalSearch').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase(),box=$('#searchResults');if(!q){box.classList.remove('show');return}const items=[...state.projects.map(x=>['Project',x.name,'projects']),...state.teams.map(x=>['Team',x.title,'teams']),...state.help.map(x=>['Help',x.title,'doubts']),['Profile',state.profile.name,'profile'],['Education',state.profile.degree,'education']].filter(x=>x[1].toLowerCase().includes(q)).slice(0,7);box.innerHTML=items.length?items.map(x=>`<div class="search-result" data-page="${x[2]}"><b>${x[0]}</b> · ${esc(x[1])}</div>`).join(''):'<div class="search-result">No results</div>';box.classList.add('show')});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 $$('[data-project-filter]').forEach(b=>b.addEventListener('click',()=>{$$('[data-project-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderProjects()}));$('#projectSearch').addEventListener('input',renderProjects);$$('[data-team-filter]').forEach(b=>b.addEventListener('click',()=>{$$('[data-team-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderTeams(b.dataset.teamFilter)}));$$('[data-rank-tab]').forEach(b=>b.addEventListener('click',()=>{$$('[data-rank-tab]').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderRanks(b.dataset.rankTab)}));$$('[data-help-tab]').forEach(b=>b.addEventListener('click',()=>{$$('[data-help-tab]').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderHelp(b.dataset.helpTab)}));
-$('#mobileMenu')?.addEventListener('click',toggleMobileNav);
+$('#mobileMenu')?.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();toggleMobileNav();});
 $('#sidebarBackdrop')?.addEventListener('click',closeMobileNav);
 window.addEventListener('resize',()=>{if(window.innerWidth>900)closeMobileNav();});
+window.addEventListener('keydown',e=>{if(e.key==='Escape')closeMobileNav();});
 renderAll();renderRanks();
