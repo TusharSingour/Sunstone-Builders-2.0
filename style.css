@@ -28,16 +28,23 @@ pre,textarea,input,select{max-width:100%}
 .mobile-menu,.sidebar-backdrop{display:none}
 
 @media(max-width:900px){
-  .sidebar{transform:translateX(-105%);transition:transform .22s ease;box-shadow:18px 0 45px rgba(0,0,0,.18)}
-  .sidebar.mobile-open{transform:translateX(0)}
-  .topbar{left:0;width:100%;padding-left:58px}
+  body.menu-open{overflow:hidden;touch-action:none}
+  .sidebar{width:min(320px,88vw);height:100dvh;max-height:100dvh;transform:translate3d(-110%,0,0);transition:transform .26s cubic-bezier(.2,.75,.2,1);box-shadow:18px 0 45px rgba(0,0,0,.28);z-index:120;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+  .sidebar.mobile-open{transform:translate3d(0,0,0)}
+  .topbar{left:0;width:100%;padding-left:62px;z-index:40}
   .wrap{margin-left:0;width:100%;padding-left:18px;padding-right:18px}
-  .mobile-menu{display:grid;place-items:center;position:fixed;left:12px;top:16px;width:34px;height:34px;border-radius:9px;background:#0b2448;color:#fff;z-index:31;font-size:18px}
-  .sidebar-backdrop{position:fixed;inset:0;background:rgba(5,18,38,.42);z-index:19}
+  .mobile-menu{display:grid;place-items:center;position:fixed;left:10px;top:12px;width:42px;height:42px;border-radius:12px;background:#0b2448;color:#fff;z-index:140;box-shadow:0 7px 20px rgba(7,26,56,.28);font-size:27px;line-height:1;pointer-events:auto;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+  .mobile-menu span{display:block;transform:translateY(-2px);font-weight:900;line-height:1}
+  .mobile-menu:active{transform:scale(.95)}
+  .sidebar-backdrop{display:none;position:fixed;inset:0;background:rgba(5,18,38,.48);z-index:110;touch-action:none;backdrop-filter:blur(1px)}
   .sidebar-backdrop.show{display:block}
 }
+@media(max-width:420px){
+  .sidebar{width:86vw;min-width:270px}
+  .mobile-menu{left:9px;top:10px;width:44px;height:44px}
+}
 @media(max-width:650px){
-  .topbar{padding-left:56px;padding-right:10px}
+  .topbar{padding-left:62px;padding-right:10px}
   .search{min-width:0;flex:1}
   .top-actions{gap:5px}
   .top-actions .icon-btn{display:none}
