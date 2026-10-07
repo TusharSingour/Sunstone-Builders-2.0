@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#071a38">
+<title>Sunstone Builders 2.0 — All-in-One Developer Hub</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+<button class="mobile-menu" id="mobileMenu" aria-label="Open navigation" aria-expanded="false">☰</button>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brandmark">S</div><div><strong>Sunstone</strong><small>Builders 2.0</small></div></div>
+  <nav id="nav">
+    <button class="nav active" data-page="dashboard"><span>⌂</span>Overview</button>
+    <button class="nav" data-page="profile"><span>◎</span>Super Profile</button>
+    <button class="nav" data-page="projects"><span>◈</span>Projects</button>
+    <button class="nav" data-page="education"><span>▣</span>Education</button>
+    <button class="nav" data-page="skills"><span>◇</span>Skills & Tools</button>
+    <button class="nav" data-page="leaderboard"><span>♛</span>Leaderboards</button>
+    <button class="nav" data-page="teams"><span>⚡</span>Hackathon Teams</button>
+    <button class="nav" data-page="doubts"><span>?</span>Doubt & Help</button>
+    <button class="nav" data-page="code"><span>⌘</span>Code Lab</button>
+    <button class="nav" data-page="days"><span>⌁</span>Code Challenge</button>
+    <button class="nav" data-page="portfolio"><span>✓</span>Official Portfolio</button>
+    <button class="nav" data-page="connections"><span>↗</span>Connections</button>
+    <button class="nav" data-page="settings"><span>⚙</span>Settings</button>
+  </nav>
+  <div class="side-card"><label>ZERO TAB SWITCHING</label><p>Profile, projects, coding, teams and peer help — one trusted student workspace.</p><small>● <span id="connectedCount">6</span> platforms connected</small></div>
+  <button class="connect side-connect" data-action="connect">＋ Connect platform</button>
+  <div class="side-user"><div class="avatar">TS</div><div><b id="sideName">Tushar Singour</b><small>B.Tech CSE · SAGE</small></div></div>
+</aside>
+
+<main>
+<header class="topbar">
+  <div class="mobile-brand"><div class="brandmark">S</div><b>Builders 2.0</b></div>
+  <div class="search"><span>⌕</span><input id="globalSearch" placeholder="Search builders, projects, teams..." autocomplete="off"><div id="searchResults" class="search-results"></div></div>
+  <div class="top-actions"><button class="icon-btn" id="notifications" title="Notifications">♧<em id="notificationCount">4</em></button><button class="user-pill" data-page="profile"><span class="avatar tiny">TS</span><b id="topName">Tushar</b>⌄</button></div>
+</header>
+
+<div class="wrap">
+<!-- DASHBOARD -->
+<section id="dashboard" class="page active">
+  <div class="hero">
+    <div class="hero-copy"><label>SUNSTONE BUILDERS 2.0 · ALL-IN-ONE DEVELOPER HUB</label><h1>Your entire developer journey.<br><span>One place.</span></h1><p>Bring your professional identity, coding progress, projects, education, collaboration and career proof into one trusted student profile.</p><div class="actions"><button class="primary" data-page="profile">Open Super Profile →</button><button class="secondary" data-page="doubts">Get coding help</button></div><div class="proof">✓ GitHub　✓ LeetCode　✓ LinkedIn　✓ HackerRank　✓ CodeChef　✓ Naukri</div></div>
+    <div class="score"><small>BUILDER SCORE</small><strong id="builderScore">1,840</strong><span>↑ <b>24%</b> this month</span><div class="score-ring"><i></i></div></div>
+  </div>
+
+  <div class="section-head"><div><label>UNIFIED DATA</label><h2>Developer snapshot</h2></div><button class="text-btn" data-page="connections">Manage connections →</button></div>
+  <div class="stats" id="platformStats"></div>
+
+  <div class="grid-two">
+    <article class="card chart-card"><div class="card-head"><div><label>DEVELOPER MOMENTUM</label><h3>Activity overview</h3></div><select id="activityRange"><option>Last 30 days</option><option>Last 90 days</option><option>This year</option></select></div><div class="chart"><div class="bars" id="activityBars"></div></div><div class="chart-legend"><span><i></i>Projects</span><span><i></i>Coding</span><span><i></i>Learning</span></div></article>
+    <article class="card"><div class="card-head"><div><label>QUICK ACTIONS</label><h3>Keep building</h3></div></div><div class="quick-actions"><button data-action="addProject"><b>＋</b><span><strong>Add project</strong><small>Publish your latest work</small></span></button><button data-action="addEducation"><b>＋</b><span><strong>Add education</strong><small>Keep your profile current</small></span></button><button data-page="teams"><b>⚡</b><span><strong>Find a team</strong><small>Join a hackathon team</small></span></button><button data-page="days"><b>150</b><span><strong>Continue challenge</strong><small id="dashStreak">37 day streak</small></span></button></div></article>
+  </div>
+  <div class="section-head"><div><label>RECENT ACTIVITY</label><h2>Everything in one feed</h2></div></div>
+  <div class="activity-feed" id="activityFeed"></div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile" class="page">
+ <div class="page-head"><div><label>UNIFIED PROFESSIONAL IDENTITY</label><h2>Super Profile</h2><p>One profile combining the information students normally maintain across professional platforms.</p></div><button class="primary" data-action="editProfile">Edit profile</button></div>
+ <div class="profile-hero card"><div class="profile-main"><div class="avatar large">TS</div><div><div class="verified">✓ SUNSTONE VERIFIED</div><h1 id="profileName">Tushar Singour</h1><h3 id="profileRole">Aspiring Full Stack Developer</h3><p id="profileBio">Building practical web experiences, solving programming problems, and turning what I learn into real projects.</p><div class="chips"><span>📍 <span id="profileLocation">Mandla, Madhya Pradesh</span></span><span>🎓 <span id="profileDegree">B.Tech CSE</span></span><span>📊 Data Analytics</span></div></div></div><div class="profile-score"><small>BUILDER SCORE</small><strong id="profileScore">1,840</strong><button class="secondary" data-action="shareProfile">Share profile</button></div></div>
+ <div class="profile-grid"><article class="card"><div class="card-head"><div><label>ABOUT</label><h3>Professional summary</h3></div><button class="mini" data-action="editProfile">Edit</button></div><div id="aboutBox" class="about-box"></div><div class="profile-links" id="profileLinks"></div></article><article class="card"><div class="card-head"><div><label>PLATFORM SNAPSHOT</label><h3>Live-ready connections</h3></div><button class="mini" data-page="connections">Manage</button></div><div id="miniConnections"></div></article></div>
+ <div class="section-head"><div><label>LINKEDIN-STYLE PROFILE DATA</label><h2>Projects · Education · Skills</h2></div><button class="text-btn" data-action="editProfile">Update profile →</button></div>
+ <div class="profile-sections"><article class="card"><div class="card-head"><h3>Featured projects</h3><button class="mini" data-action="addProject">＋ Add</button></div><div id="profileProjects"></div></article><article class="card"><div class="card-head"><h3>Education</h3><button class="mini" data-action="addEducation">＋ Add</button></div><div id="profileEducation"></div></article><article class="card"><div class="card-head"><h3>Top skills</h3><button class="mini" data-page="skills">Manage</button></div><div id="profileSkills" class="skill-chips"></div></article></div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="page">
+ <div class="page-head"><div><label>PORTFOLIO WORKSPACE</label><h2>Projects</h2><p>Add once. Your project can appear across Super Profile, portfolio and recruiter view.</p></div><button class="primary" data-action="addProject">＋ Add project</button></div>
+ <div class="filters"><button class="filter active" data-project-filter="all">All</button><button class="filter" data-project-filter="featured">Featured</button><button class="filter" data-project-filter="verified">Verified</button><input id="projectSearch" placeholder="Search projects..."></div>
+ <div class="project-grid" id="projectGrid"></div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="page">
+ <div class="page-head"><div><label>ACADEMIC PROFILE</label><h2>Education</h2><p>Store your degree, institution, specialization and academic milestones in the same profile.</p></div><button class="primary" data-action="addEducation">＋ Add education</button></div>
+ <div class="timeline" id="educationTimeline"></div>
+ <div class="section-head"><div><label>ACADEMIC HIGHLIGHTS</label><h2>Achievements</h2></div><button class="mini" data-action="addAchievement">＋ Add</button></div>
+ <div class="achievement-grid" id="achievementGrid"></div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="page">
+ <div class="page-head"><div><label>TECH STACK</label><h2>Skills & Tools</h2><p>Maintain a single skill inventory that can be reused in projects, teams and portfolio.</p></div><button class="primary" data-action="addSkill">＋ Add skill</button></div>
+ <div class="skill-groups" id="skillGroups"></div>
+</section>
+
+<!-- LEADERBOARD -->
+<section id="leaderboard" class="page">
+ <div class="page-head"><div><label>CAMPUS PERFORMANCE</label><h2>Leaderboards</h2><p>Compare verified activity across your campus and the wider Sunstone ecosystem.</p></div><button class="secondary" data-action="leaderboardInfo">How scoring works</button></div>
+ <div class="tabs" id="rankTabs"><button class="tab active" data-rank-tab="all">All campuses</button><button class="tab" data-rank-tab="campus">My campus</button><button class="tab" data-rank-tab="projects">Projects</button><button class="tab" data-rank-tab="coding">Coding</button></div>
+ <div class="podium" id="podium"></div>
+ <div class="card rank-card"><div class="card-head"><div><label>RANK LIST</label><h3 id="rankTitle">Top Builders</h3></div><span class="pill">Updated just now</span></div><div id="rankList"></div></div>
+</section>
+
+<!-- TEAMS -->
+<section id="teams" class="page">
+ <div class="page-head"><div><label>COLLABORATION</label><h2>Hackathon Teams</h2><p>Find teammates by role, stack, campus and project idea without leaving Builders.</p></div><button class="primary" data-action="createTeam">＋ Create team</button></div>
+ <div class="filters"><button class="filter active" data-team-filter="all">All</button><button class="filter" data-team-filter="frontend">Frontend</button><button class="filter" data-team-filter="backend">Backend</button><button class="filter" data-team-filter="data">Data / AI</button><button class="filter" data-team-filter="design">Design</button></div>
+ <div class="team-grid" id="teamGrid"></div>
+</section>
+
+<!-- DOUBTS -->
+<section id="doubts" class="page">
+ <div class="page-head"><div><label>CONTROLLED PEER HELP</label><h2>Doubt & Help</h2><p>Personal projects remain private. This feed shows all active requests where the owner explicitly allowed a temporary Help Fork.</p></div><button class="primary" data-action="askHelp">＋ Ask for help</button></div>
+ <div class="policy"><b>🔒 Protected project ownership</b><span>Regular projects cannot be globally forked. Only a request with <strong>Allow Help Fork</strong> can create a temporary helping workspace.</span><button class="mini" data-action="forkPolicy">View policy</button></div>
+ <div class="tabs" id="helpTabs"><button class="tab active" data-help-tab="feed">All Fork Requests</button><button class="tab" data-help-tab="mine">My Requests</button><button class="tab" data-help-tab="solved">Solved</button></div>
+ <div class="help-grid" id="helpGrid"></div>
+</section>
+
+<!-- CODE LAB -->
+<section id="code" class="page">
+ <div class="page-head"><div><label>COLLABORATIVE CODING</label><h2>Code Lab</h2><p>Read shared code, open approved help forks, edit the solution and submit it back to the owner.</p></div><button class="secondary" data-action="forkPolicy">Fork policy</button></div>
+ <div class="code-policy"><b>Global fork disabled</b><span>Only a specific Doubt & Help request can unlock a temporary help fork.</span><button class="primary" data-page="doubts">Open help requests</button></div>
+ <div class="code-layout"><article class="card code-browser"><div class="browser-top"><div><span class="dot"></span><span class="dot"></span><span class="dot"></span></div><b id="codeTitle">Read-only shared code</b><span class="pill">Protected</span></div><pre id="sharedCode"></pre></article><article class="card"><label>HELP WORKSPACE</label><h3 id="workspaceTitle">No active help fork</h3><p id="workspaceText" class="muted">Choose “Fork for helping” on an allowed doubt request. Your temporary workspace will open here.</p><button class="primary full" id="openWorkspace" disabled>Open editor</button><div class="workspace-meta" id="workspaceMeta"></div></article></div>
+</section>
+
+<!-- DAYS -->
+<section id="days" class="page">
+ <div class="page-head"><div><label>PERSONAL CODING GOAL</label><h2 id="challengeTitle">Custom Code Challenge</h2><p>Set your own target and complete a day only after submitting code in the editor.</p></div><div class="actions"><button class="secondary" data-action="setupChallenge">⚙ Customize goal</button><button class="primary" id="completeToday">▶ Continue challenge</button></div></div>
+ <div class="streak-card card"><div><small>CURRENT STREAK</small><strong id="streakNumber">37</strong><span>days</span></div><div><small>BEST STREAK</small><strong id="bestStreak">37</strong><span>days</span></div><div><small>COMPLETED</small><strong id="completedDays">37</strong><span id="challengeTotal">/ 150</span></div><div class="streak-note">🔥 Submit real code for each day. Your progress is saved locally in this browser.</div></div>
+ <article class="card calendar-card"><div class="card-head"><div><label>CHALLENGE CALENDAR</label><h3>Day-by-day progress</h3></div><span class="pill" id="calendarPct">25%</span></div><div class="calendar" id="calendar"></div></article>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="page">
+ <div class="page-head"><div><label>TEACHER PUBLISHING</label><h2>Official Portfolio</h2><p>Student work → mentor review → verified public portfolio, all inside Builders.</p></div><button class="primary" data-action="publishWork">✓ Publish approved work</button></div>
+ <div class="flow"><article class="done"><b>01</b><strong>Student submits</strong><small>Project + proof</small></article><i></i><article class="done"><b>02</b><strong>Mentor reviews</strong><small>Quality check</small></article><i></i><article class="current"><b>03</b><strong>Official publish</strong><small>Verified public URL</small></article><i></i><article><b>04</b><strong>Recruiter view</strong><small>One trusted link</small></article></div>
+ <div class="portfolio-grid"><article class="card preview"><div class="browser">● ● ●　 builders.sunstone.edu/u/tushar-singour</div><div class="verified">✓ SUNSTONE VERIFIED</div><div class="bigavatar">TS</div><h2 id="portfolioName">Tushar Singour</h2><p>Aspiring Full Stack Developer · B.Tech CSE</p><div class="preview-stats"><b><span id="portProjects">4</span><small>Projects</small></b><b>127<small>LeetCode</small></b><b>642<small>GitHub</small></b></div><div id="portfolioRows"></div></article><article class="card"><label>MENTOR CONSOLE</label><h3>Approval queue</h3><div id="approvalQueue"></div><p class="muted">Approved work receives a verified portfolio badge and can be included in recruiter-facing views.</p></article></div>
+</section>
+
+<!-- CONNECTIONS -->
+<section id="connections" class="page">
+ <div class="page-head"><div><label>CONNECTED ECOSYSTEM</label><h2>Platform Connections</h2><p>Connect once. Builders keeps a normalized profile layer so you don't have to switch tabs for basic profile data.</p></div><button class="primary" data-action="connect">＋ Connect platform</button></div>
+ <div class="connection-grid" id="connectionGrid"></div>
+ <div class="notice card"><b>Important for production:</b> Real LinkedIn/GitHub/LeetCode synchronization requires OAuth/API access and a backend. This frontend includes the complete connection UI, local persistence and import simulation so the product flow can be tested without exposing API secrets in the browser.</div>
+</section>
+
+<!-- SETTINGS -->
+<section id="settings" class="page">
+ <div class="page-head"><div><label>ACCOUNT</label><h2>Settings</h2><p>Control your profile visibility, notifications and demo data.</p></div><button class="secondary" data-action="resetDemo">Reset demo data</button></div>
+ <div class="settings-grid"><article class="card settings-card"><label>PROFILE VISIBILITY</label><h3>Public Super Profile</h3><p>Allow campus students and recruiters to view your approved profile.</p><label class="switch"><input type="checkbox" id="publicProfile" checked><span></span></label></article><article class="card settings-card"><label>NOTIFICATIONS</label><h3>Activity alerts</h3><p>Get in-app notifications for team requests, help forks and mentor approvals.</p><label class="switch"><input type="checkbox" id="notificationsEnabled" checked><span></span></label></article><article class="card settings-card"><label>DATA</label><h3>Local demo storage</h3><p>This prototype saves changes in your browser using localStorage.</p><button class="secondary" data-action="exportData">Export profile JSON</button></article><article class="card settings-card"><label>SECURITY</label><h3>Help-fork permissions</h3><p>Personal projects are never globally forkable. Each help request has its own explicit permission.</p><button class="secondary" data-action="forkPolicy">Read permission model</button></article></div>
+</section>
+</div>
+</main>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal"><div class="modal-box"><button class="modal-close" id="modalClose">×</button><label id="modalEyebrow">BUILDERS ECOSYSTEM</label><h2 id="modalTitle">Action</h2><p id="modalText"></p><div id="modalBody"></div><div class="modal-actions" id="modalActions"></div></div></div>
+<div id="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>
