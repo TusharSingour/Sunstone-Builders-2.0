@@ -23,6 +23,7 @@
     <button class="nav" data-page="teams"><span>⚡</span>Hackathon Teams</button>
     <button class="nav" data-page="doubts"><span>?</span>Doubt & Help</button>
     <button class="nav" data-page="code"><span>⌘</span>Code Lab</button>
+    <button class="nav" data-page="roadmaps"><span>⌁</span>Roadmaps</button>
     <button class="nav" data-page="days"><span>⌁</span>Code Challenge</button>
     <button class="nav" data-page="portfolio"><span>✓</span>Official Portfolio</button>
     <button class="nav" data-page="connections"><span>↗</span>Connections</button>
@@ -124,6 +125,18 @@
  <div class="page-head"><div><label>PERSONAL CODING GOAL</label><h2 id="challengeTitle">Custom Code Challenge</h2><p>Set your own target and complete a day only after submitting code in the editor.</p></div><div class="actions"><button class="secondary" data-action="setupChallenge">⚙ Customize goal</button><button class="primary" id="completeToday">▶ Continue challenge</button></div></div>
  <div class="streak-card card"><div><small>CURRENT STREAK</small><strong id="streakNumber">37</strong><span>days</span></div><div><small>BEST STREAK</small><strong id="bestStreak">37</strong><span>days</span></div><div><small>COMPLETED</small><strong id="completedDays">37</strong><span id="challengeTotal">/ 150</span></div><div class="streak-note">🔥 Submit real code for each day. Your progress is saved locally in this browser.</div></div>
  <article class="card calendar-card"><div class="card-head"><div><label>CHALLENGE CALENDAR</label><h3>Day-by-day progress</h3></div><span class="pill" id="calendarPct">25%</span></div><div class="calendar" id="calendar"></div></article>
+</section>
+
+<!-- CAREER ROADMAPS -->
+<section id="roadmaps" class="page">
+ <div class="page-head"><div><label>CAREER LEARNING PATHS</label><h2>Choose Your Roadmap</h2><p>Select a career path to open a connected, step-by-step roadmap. Click any topic to see what to learn and where to practice.</p></div></div>
+ <div id="roadmapChooser" class="roadmap-chooser"></div>
+ <section id="roadmapDetail" class="roadmap-detail card" hidden>
+  <div class="roadmap-detail-head"><div><button class="text-btn" id="roadmapBack">← All career paths</button><h2 id="roadmapTitle">Frontend Developer</h2><p id="roadmapDescription" class="muted">Follow the connected topics in order.</p></div><div class="roadmap-tools"><span class="pill" id="roadmapProgress">0% complete</span><button class="secondary" id="roadmapReset">Reset progress</button></div></div>
+  <div class="roadmap-legend"><span><i class="legend-dot done-dot"></i>Completed</span><span><i class="legend-dot current-dot"></i>Recommended next</span><span><i class="legend-dot"></i>Not completed</span></div>
+  <div class="roadmap-canvas-wrap" id="roadmapCanvasWrap"><div id="roadmapCanvas" class="roadmap-canvas" aria-label="Interactive career roadmap"></div></div>
+  <p class="roadmap-footnote">Tip: select any topic to view prerequisites, key concepts and learning resources. Progress is saved in this browser.</p>
+ </section>
 </section>
 
 <!-- PORTFOLIO -->
