@@ -33,16 +33,24 @@ function save(){delete state.experience;localStorage.setItem(KEY,JSON.stringify(
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),2500)}
 function closeMobileNav(){
-  $('#sidebar')?.classList.remove('mobile-open');
-  $('#sidebarBackdrop')?.classList.remove('show');
-  $('#mobileMenu')?.setAttribute('aria-expanded','false');
+  const sidebar=$('#sidebar'),backdrop=$('#sidebarBackdrop'),button=$('#mobileMenu');
+  sidebar?.classList.remove('mobile-open');
+  backdrop?.classList.remove('show');
+  button?.setAttribute('aria-expanded','false');
+  button?.setAttribute('aria-label','Open navigation');
+  if(button) button.textContent='☰';
+  document.body.classList.remove('mobile-nav-open');
 }
 function toggleMobileNav(){
-  const sidebar=$('.sidebar'),backdrop=$('#sidebarBackdrop'),button=$('#mobileMenu');
+  const sidebar=$('#sidebar'),backdrop=$('#sidebarBackdrop'),button=$('#mobileMenu');
+  if(!sidebar) return;
   const open=!sidebar.classList.contains('mobile-open');
   sidebar.classList.toggle('mobile-open',open);
-  backdrop.classList.toggle('show',open);
+  backdrop?.classList.toggle('show',open);
   button?.setAttribute('aria-expanded',String(open));
+  button?.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+  if(button) button.textContent=open?'×':'☰';
+  document.body.classList.toggle('mobile-nav-open',open);
 }
 function openPage(id){
   $$('.page').forEach(p=>p.classList.toggle('active',p.id===id));
@@ -270,7 +278,7 @@ $('#completeToday').addEventListener('click',()=>{
   const next=Array.from({length:total},(_,i)=>i+1).find(n=>!state.completed.includes(n))||total;
   openDayEditor(next);
 });
-$('#openWorkspace').addEventListener('click',openWorkspace);$('#modalClose').addEventListener('click',closeModal);$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});$('#notifications').addEventListener('click',notify);$('#globalSearch').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase(),box=$('#searchResults');if(!q){box.classList.remove('show');return}const items=[...state.projects.map(x=>['Project',x.name,'projects']),...state.teams.map(x=>['Team',x.title,'teams']),...state.help.map(x=>['Help',x.title,'doubts']),['Profile',state.profile.name,'profile'],['Education',state.profile.degree,'education']].filter(x=>x[1].toLowerCase().includes(q)).slice(0,7);box.innerHTML=items.length?items.map(x=>`<div class="search-result" data-page="${x[2]}"><b>${x[0]}</b> · ${esc(x[1])}</div>`).join(''):'<div class="search-result">No results</div>';box.classList.add('show')});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+$('#openWorkspace').addEventListener('click',openWorkspace);$('#modalClose').addEventListener('click',closeModal);$('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});$('#notifications').addEventListener('click',notify);$('#globalSearch').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase(),box=$('#searchResults');if(!q){box.classList.remove('show');return}const items=[...state.projects.map(x=>['Project',x.name,'projects']),...state.teams.map(x=>['Team',x.title,'teams']),...state.help.map(x=>['Help',x.title,'doubts']),['Profile',state.profile.name,'profile'],['Education',state.profile.degree,'education']].filter(x=>x[1].toLowerCase().includes(q)).slice(0,7);box.innerHTML=items.length?items.map(x=>`<div class="search-result" data-page="${x[2]}"><b>${x[0]}</b> · ${esc(x[1])}</div>`).join(''):'<div class="search-result">No results</div>';box.classList.add('show')});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeMobileNav()}});
 $$('[data-project-filter]').forEach(b=>b.addEventListener('click',()=>{$$('[data-project-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderProjects()}));$('#projectSearch').addEventListener('input',renderProjects);$$('[data-team-filter]').forEach(b=>b.addEventListener('click',()=>{$$('[data-team-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderTeams(b.dataset.teamFilter)}));$$('[data-rank-tab]').forEach(b=>b.addEventListener('click',()=>{$$('[data-rank-tab]').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderRanks(b.dataset.rankTab)}));$$('[data-help-tab]').forEach(b=>b.addEventListener('click',()=>{$$('[data-help-tab]').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderHelp(b.dataset.helpTab)}));
 $('#roadmapChooser')?.addEventListener('click',e=>{const choice=e.target.closest('[data-roadmap]');if(choice)selectRoadmap(choice.dataset.roadmap)});
 $('#roadmapCanvas')?.addEventListener('click',e=>{const node=e.target.closest('[data-roadmap-node]');if(node)showRoadmapNode(node.dataset.roadmapNode)});

@@ -125,3 +125,49 @@ main{margin-left:248px;width:calc(100% - 248px);max-width:calc(100% - 248px);min
 .roadmap-status-btn{border:1px solid #d5dfec;background:#edf4ff;color:#214f91;border-radius:10px;padding:10px 14px;font-weight:750;cursor:pointer}.roadmap-status-btn:disabled{opacity:.55;cursor:default}
 .roadmap-edge{stroke:#3d7cff;stroke-width:3;stroke-dasharray:2 7}.roadmap-edge.edge-done{stroke:#16865c;stroke-width:4;stroke-dasharray:none}
 @media(max-width:800px){.roadmap-choice{padding:15px}.roadmap-canvas-wrap{touch-action:pan-x pan-y}.roadmap-canvas{min-width:100%}.roadmap-svg{min-height:480px}.roadmap-tools .pill{white-space:normal}}
+
+
+/* Mobile navigation drawer: full-width, full-height, and auto-closing */
+@media (max-width: 900px) {
+  body.mobile-nav-open { overflow: hidden; }
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: min(300px, 86vw);
+    max-width: 86vw;
+    height: 100vh;
+    height: 100dvh;
+    padding: 22px 15px calc(24px + env(safe-area-inset-bottom));
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    z-index: 30;
+    transform: translateX(-105%);
+    transition: transform .24s ease;
+    visibility: visible;
+  }
+  .sidebar.mobile-open { transform: translateX(0); }
+  .sidebar .brand { justify-content: flex-start; padding-bottom: 22px; }
+  .sidebar .brand > div:last-child,
+  .sidebar .nav span:last-child,
+  .sidebar .side-card,
+  .sidebar .side-connect,
+  .sidebar .side-user > div { display: revert; }
+  .sidebar .nav {
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 12px;
+    min-height: 44px;
+    white-space: normal;
+  }
+  .sidebar .nav span:first-child { width: 22px; flex: 0 0 22px; }
+  .sidebar .side-connect { display: block; width: 100%; }
+  .sidebar .side-user { display: flex; }
+  .sidebar .side-user > div { display: block; }
+  .sidebar-backdrop { display: none; position: fixed; inset: 0; z-index: 29; background: rgba(5,18,38,.54); backdrop-filter: blur(2px); }
+  .sidebar-backdrop.show { display: block; }
+  .mobile-menu { z-index: 32; width: 40px; height: 40px; top: calc(12px + env(safe-area-inset-top)); left: 12px; font-size: 24px; line-height: 1; box-shadow: 0 4px 12px rgba(0,0,0,.16); }
+  .mobile-menu[aria-expanded="true"] { background: var(--orange); color: #fff; }
+}
